@@ -30,7 +30,6 @@ import { Separator } from "@/components/ui/separator";
 // ============================================================
 
 export default function Login({ status, canResetPassword }) {
-
     // -------------------------------------------------------
     // useForm: Inertia.js が提供するフォーム管理の仕組み
     //   data       = フォームの入力値
@@ -60,15 +59,13 @@ export default function Login({ status, canResetPassword }) {
 
             {/* 画面全体：中央揃え + 背景グラデーション */}
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 p-4">
-
                 {/* ===== アニメーション①：カード全体が下から上に浮き上がる ===== */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="w-full max-w-md"
+                    className="w-full max-w-sm md:max-w-md"
                 >
-
                     {/* ===== アニメーション②：ロゴエリアが少し遅れてフェードイン ===== */}
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
@@ -122,7 +119,6 @@ export default function Login({ status, canResetPassword }) {
                             )}
 
                             <form onSubmit={submit} className="space-y-4">
-
                                 {/* ===== アニメーション③：メールアドレス欄が左からスライドイン ===== */}
                                 <motion.div
                                     initial={{ opacity: 0, x: -10 }}
@@ -131,7 +127,9 @@ export default function Login({ status, canResetPassword }) {
                                     className="space-y-2"
                                 >
                                     {/* Label = shadcn/ui のラベルコンポーネント */}
-                                    <Label htmlFor="email">メールアドレス</Label>
+                                    <Label htmlFor="email">
+                                        メールアドレス
+                                    </Label>
                                     <Input
                                         id="email"
                                         type="email"
@@ -139,9 +137,15 @@ export default function Login({ status, canResetPassword }) {
                                         value={data.email}
                                         autoComplete="username"
                                         autoFocus
-                                        onChange={(e) => setData("email", e.target.value)}
+                                        onChange={(e) =>
+                                            setData("email", e.target.value)
+                                        }
                                         placeholder="example@email.com"
-                                        className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
+                                        className={
+                                            errors.email
+                                                ? "border-red-500 focus-visible:ring-red-500"
+                                                : ""
+                                        }
                                     />
                                     {/* エラーがあれば赤文字で表示 */}
                                     {errors.email && (
@@ -163,7 +167,9 @@ export default function Login({ status, canResetPassword }) {
                                     className="space-y-2"
                                 >
                                     <div className="flex items-center justify-between">
-                                        <Label htmlFor="password">パスワード</Label>
+                                        <Label htmlFor="password">
+                                            パスワード
+                                        </Label>
                                         {/* パスワードリセット機能が有効なときだけリンクを表示 */}
                                         {canResetPassword && (
                                             <Link
@@ -180,9 +186,15 @@ export default function Login({ status, canResetPassword }) {
                                         name="password"
                                         value={data.password}
                                         autoComplete="current-password"
-                                        onChange={(e) => setData("password", e.target.value)}
+                                        onChange={(e) =>
+                                            setData("password", e.target.value)
+                                        }
                                         placeholder="パスワードを入力"
-                                        className={errors.password ? "border-red-500 focus-visible:ring-red-500" : ""}
+                                        className={
+                                            errors.password
+                                                ? "border-red-500 focus-visible:ring-red-500"
+                                                : ""
+                                        }
                                     />
                                     {errors.password && (
                                         <motion.p
@@ -212,16 +224,32 @@ export default function Login({ status, canResetPassword }) {
                                         {/* 送信中はスピナーアイコンに切り替え */}
                                         {processing ? (
                                             <span className="flex items-center gap-2">
-                                                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                                                <svg
+                                                    className="animate-spin h-4 w-4"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                >
+                                                    <circle
+                                                        className="opacity-25"
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                        stroke="currentColor"
+                                                        strokeWidth="4"
+                                                    />
+                                                    <path
+                                                        className="opacity-75"
+                                                        fill="currentColor"
+                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                                                    />
                                                 </svg>
                                                 ログイン中...
                                             </span>
-                                        ) : "ログイン"}
+                                        ) : (
+                                            "ログイン"
+                                        )}
                                     </Button>
                                 </motion.div>
-
                             </form>
                         </CardContent>
 
@@ -239,7 +267,6 @@ export default function Login({ status, canResetPassword }) {
                             </p>
                         </CardFooter>
                     </Card>
-
                 </motion.div>
             </div>
         </>
